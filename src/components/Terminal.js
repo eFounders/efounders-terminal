@@ -5,13 +5,17 @@ import TerminalLink from './TerminalLink';
 
 const styles = {
   terminal: {
+    position: 'relative',
     fontFamily: '\'Lucida Console\', Monaco, monospace',
     fontSize: 16,
     backgroundColor: '#000',
     color: '#fff',
     width: '100ch',
-    height: 21 * 25,
+    get height() {
+      return (this.fontSize * this.lineHeight) * 25;
+    },
     overflow: 'auto',
+    lineHeight: 1.25,
   },
   terminalLines: {
     listStyleType: 'none',
