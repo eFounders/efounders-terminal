@@ -4,42 +4,9 @@ import TerminalLine from './TerminalLine';
 import TerminalLink from './TerminalLink';
 
 const styles = {
-  terminal: {
-    position: 'relative',
-    fontFamily: '\'Lucida Console\', Monaco, monospace',
-    fontSize: 16,
-    backgroundColor: '#000',
-    color: '#fff',
-    width: '100ch',
-    get height() {
-      return (this.fontSize * this.lineHeight) * 25;
-    },
-    overflow: 'auto',
-    lineHeight: 1.25,
-  },
-  terminalLines: {
-    listStyleType: 'none',
-    padding: 0,
-    margin: 0,
-  },
-  spacer: { visibility: 'hidden' },
-  prompt: {
-    // paddingRight: '1ch',
-  },
-  label: {
-    position: 'relative',
-  },
   caret: (caret) => ({
-    position: 'absolute',
     left: `${caret}ch`,
-    opacity: 0.5,
-    backgroundColor: '#fff',
   }),
-  input: {
-    position: 'absolute',
-    left: -9999,
-    // left: 0,
-  },
 };
 
 class Terminal extends Component {
@@ -112,8 +79,8 @@ class Terminal extends Component {
   render() {
     const { lines, prompt } = this.props;
     return (
-      <div ref="terminal" onClick={this.onClick} style={styles.terminal}>
-        <ul style={styles.terminalLines}>
+      <div className="l-console" ref="terminal" onClick={this.onClick}>
+        <ul className="l-console__lines">
           {lines.map((line, index) => {
             if (line.href) {
               return <TerminalLink key={index} link={line} />;
@@ -122,19 +89,20 @@ class Terminal extends Component {
           })}
         </ul>
         <form onSubmit={this.onSubmit}>
-          <span style={styles.prompt}>efounders.co:website hacker${'\u00a0'}</span>
-          <label htmlFor="terminal-input" style={styles.label}>
+          <span>efounders.co:website hacker${'\u00a0'}</span>
+          <label className="l-console__label" htmlFor="terminal-input">
             <span>{prompt.value}</span>
-            <span style={styles.caret(prompt.caret)}>|</span>
+            <span className="l-console__caret" style={styles.caret(prompt.caret)}>|</span>
           </label>
           <input
+            className="l-console__input"
             id="terminal-input"
+            autoComplete="off"
             ref="input"
             value={prompt.value}
             onChange={this.onChange}
             onKeyDown={this.onKeyDown}
             maxLength="50"
-            style={styles.input}
           />
         </form>
       </div>
