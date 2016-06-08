@@ -1,3 +1,16 @@
+const logoCommandLines = () => ([
+  '    ▄▄▓▓▓▓▓▓▓▓▄▄    ',
+  '  ▄▓▓▓▓▓▓▓▓▓▓▓▓▓▓▄  ',
+  ' ▓▓▓▓▓▓▀▀  ▀▀▓▓▓▓▓▓ ',
+  '▓▓▓▓▓▀  ▄▄▄   ▀▓▓▓▓▓',
+  '▓▓▓▓▓   ▓  ▄▄█▀▓▓▓▓▓',
+  '█▓▓▓▓▄  ▀▀▀▀  ▄▓▓▓▓▓',
+  ' ▓▓▓▓▓▓▄▄  ▄▄▓▓▓▓▓▓ ',
+  '  ▀▓▓▓▓▓▓▓▓▓▓▓▓▓▓▀  ',
+  '    ▀▀█▓▓▓▓▓▓█▀▀    ',
+  ' ',
+].map((line) => ({ color: '#40d140', value: line })));
+
 const welcomeCommandLines = () => ([
   'Welcome to eFounders’ Hacker Program',
   ' ',
@@ -85,6 +98,7 @@ pressure`,
   '  - Full-stack technology experience (front and back end)',
   '  - Deep understanding of Javascript',
   '  - Contribution to open-source projects',
+  ' ',
 ]);
 
 const benefitsCommandLines = () => ([
@@ -95,12 +109,14 @@ const benefitsCommandLines = () => ([
   `  - An incredible team of hackers and hustlers - You won’t (always) be the smartest person in
 the room and you’ll love it!`,
   '  - Fun times: Friday beers, ping-pong, drone testing, team retreats & more',
+  ' ',
 ]);
 
 const applyCommandLines = () => ([
   { href: 'https://efounders.workable.com/jobs/139423/?ref=websiteHackers' },
   `We are looking for top notch developers to join our Hacker Program and we think that the best
 engineers deserve a competitive salary and exciting perks - that’s where we come in.`,
+  ' ',
 ]);
 
 const testimonialsCommandLines = () => ([
@@ -121,6 +137,7 @@ and focus on delivering value from Day 1."`,
   'Xavier Durand, Lead Developer at Aircall',
   { href: 'https://github.com/xdurand' },
   { href: 'https://aircall.io/' },
+  ' ',
 ]);
 
 const unknownCommandLines = (arg) => ([
@@ -133,6 +150,9 @@ const efoundersCommandLines = (command, args) => {
   switch (arg) {
     case 'help':case '': {
       return helpCommandLines();
+    }
+    case 'logo': {
+      return logoCommandLines();
     }
     case 'welcome': {
       return welcomeCommandLines();
