@@ -123,12 +123,12 @@ const testimonialsCommandLines = () => ([
   `"For 6 month I worked with CTOs and product specialists to develop 3 new applications on Meteor
 and the greater JS ecosystem (e.g. React, Node & Electron). After the 6-month program, I joined the
 eFounders team to help our companies write the best possible code!"`,
-  'Simon Arvaux, Full-Stack Developer',
+  'Simon Arvaux, Full-Stack Developer at eFounders',
   { href: 'http://stackoverflow.com/users/2530970/saimeunt' },
   ' ',
   `"Working hand in hand with talented engineers taught me the best way to build a MVP and gave me
 the opportunity to join Spendesk in the early days of the project."`,
-  'Guilhem Bellion, Full-Stack Developer for Spendesk',
+  'Guilhem Bellion, Full-Stack Developer at Spendesk',
   { href: 'https://github.com/guilhembellion' },
   { href: 'https://www.spendesk.com/' },
   ' ',
