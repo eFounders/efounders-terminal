@@ -89,7 +89,9 @@ class TerminalPrompt extends Component {
         <input
           className="l-console__input"
           id="terminal-input"
+          autoCorrect="off"
           autoComplete="off"
+          autoCapitalize="off"
           ref="input"
           value={prompt.value}
           onChange={this.onChange}
