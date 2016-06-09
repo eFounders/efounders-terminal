@@ -5,7 +5,7 @@ import TerminalLink from './TerminalLink';
 import TerminalPrompt from './TerminalPrompt';
 
 class Terminal extends Component {
-  propTypes = {
+  static propTypes = {
     lines: PropTypes.array.isRequired,
   };
   componentDidUpdate() {

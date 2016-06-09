@@ -1,6 +1,5 @@
 import path from 'path';
 import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 export default {
   devtool: 'source-map',
@@ -14,9 +13,6 @@ export default {
       compressor: {
         warnings: false,
       },
-    }),
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),

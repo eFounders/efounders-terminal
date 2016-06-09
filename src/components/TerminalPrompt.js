@@ -7,7 +7,7 @@ const styles = {
 };
 
 class TerminalPrompt extends Component {
-  propTypes = {
+  static propTypes = {
     history: PropTypes.object.isRequired,
     prompt: PropTypes.object.isRequired,
     //

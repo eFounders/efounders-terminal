@@ -5,15 +5,19 @@ import store from './store';
 import Main from './components/Main';
 import './styles/style.scss';
 
-if (process.env.NODE_ENV !== 'production') {
-  // eslint-disable-next-line global-require
-  require('./index.html');
-}
-
 const App = () => (
   <Provider store={store}>
     <Main />
   </Provider>
 );
 
-render(<App />, document.getElementById('react-root'));
+window.renderTerminal = (id) => {
+  render(<App />, document.getElementById(id));
+};
+
+if (process.env.NODE_ENV === 'development') {
+  // eslint-disable-next-line global-require
+  require('./index.html');
+  //
+  window.renderTerminal('react-root');
+}
