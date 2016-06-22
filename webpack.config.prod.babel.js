@@ -23,9 +23,6 @@ export default {
       test: /\.html$/,
       loader: 'raw-loader',
     }, {
-      test: /\.scss$/,
-      loaders: ['style', 'css', 'sass'],
-    }, {
       test: /\.js$/,
       loader: 'babel',
       include: path.join(__dirname, 'src'),

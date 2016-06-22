@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import Main from './components/Main';
-import './styles/style.scss';
 
 const App = () => (
   <Provider store={store}>
