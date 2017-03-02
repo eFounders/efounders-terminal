@@ -9,7 +9,7 @@ const logoCommandLines = () => ([
   '  ▀▓▓▓▓▓▓▓▓▓▓▓▓▓▓▀  ',
   '    ▀▀█▓▓▓▓▓▓█▀▀    ',
   ' ',
-].map((line) => ({ color: '#40d140', value: line })));
+].map(line => ({ color: '#40d140', value: line })));
 
 const welcomeCommandLines = () => ([
   'Welcome to eFounders’ Hacker Program',
@@ -120,8 +120,8 @@ engineers deserve a competitive salary and exciting perks - that’s where we co
 ]);
 
 const testimonialsCommandLines = () => ([
-  `"For 6 month I worked with CTOs and product specialists to develop 3 new applications on Meteor
-and the greater JS ecosystem (e.g. React, Node & Electron). After the 6-month program, I joined the
+  `"For 6 months I worked with CTOs and product specialists to develop 3 new applications on Meteor
+and the greater JS ecosystem (e.g. React, Node & Electron). After the 6-months program, I joined the
 eFounders team to help our companies write the best possible code!"`,
   'Simon Arvaux, Full-Stack Developer at eFounders',
   { href: 'http://stackoverflow.com/users/2530970/saimeunt' },
@@ -136,11 +136,21 @@ the opportunity to join Spendesk in the early days of the project."`,
 and focus on delivering value from Day 1."`,
   'Xavier Durand, Lead Developer at Aircall',
   { href: 'https://github.com/xdurand' },
+  ' ',
+  `"I entered eFounders Hacker Program to roll up my sleeves and help build Aircall, before that, I
+graduated from Centrale Lyon and then started (and failed!) a business in social hiring."`,
+  'Pierre-Baptiste, Backend Engineer and Co-founder at Aircall',
+  { href: 'https://github.com/pbechu' },
   { href: 'https://aircall.io/' },
   ' ',
+  /* {
+    src: '/assets/images/terminal/pb.jpg',
+    alt: 'Pierre-Baptiste Béchu',
+    style: { display: 'block', maxWidth: '100%', marginLeft: 'auto', marginRight: 'auto' },
+  },*/
 ]);
 
-const unknownCommandLines = (arg) => ([
+const unknownCommandLines = arg => ([
   `efounders: '${arg}' is not an efounders command.`,
   'See \'efounders help\'.',
 ]);
@@ -191,7 +201,7 @@ const shrugCommandLines = () => (['¯\\_(ツ)_/¯']);
 
 const emptyCommandLines = () => ([]);
 
-const notFoundCommandLines = (program) => ([`bash: ${program}: command not found`]);
+const notFoundCommandLines = program => ([`bash: ${program}: command not found`]);
 
 const parseCommand = (command) => {
   const [program, ...args] = command.split(' ');
@@ -211,7 +221,7 @@ const parseCommand = (command) => {
   }
 };
 
-const executeCommand = (command) => ({
+const executeCommand = command => ({
   type: 'EXECUTE_COMMAND',
   lines: [
     `efounders.co:website hacker$ ${command}`,
@@ -227,7 +237,7 @@ const historyPrevious = () => ({ type: 'HISTORY_PREVIOUS' });
 
 const historyNext = () => ({ type: 'HISTORY_NEXT' });
 
-const typeCommand = (value) => ({
+const typeCommand = value => ({
   type: 'TYPE_COMMAND',
   value,
 });

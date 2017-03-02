@@ -1,15 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 
 const styles = {
-  caret: (caret) => ({
+  caret: caret => ({
     left: `${caret}ch`,
   }),
 };
 
 class TerminalPrompt extends Component {
   static propTypes = {
-    history: PropTypes.object.isRequired,
-    prompt: PropTypes.object.isRequired,
+    history: PropTypes.shape({
+      index: PropTypes.number,
+    }).isRequired,
+    prompt: PropTypes.shape({
+      value: PropTypes.string,
+      caret: PropTypes.number,
+    }).isRequired,
     //
     executeCommand: PropTypes.func.isRequired,
     caretLeft: PropTypes.func.isRequired,
@@ -19,16 +24,14 @@ class TerminalPrompt extends Component {
     typeCommand: PropTypes.func.isRequired,
   };
   componentDidMount() {
-    const { input } = this.refs;
-    input.focus();
+    this.input.focus();
   }
   componentDidUpdate(prevProps) {
     const { index: prevIndex } = prevProps.history;
     const { index } = this.props.history;
     if (prevIndex !== index) {
-      const { input } = this.refs;
       setTimeout(() => {
-        input.setSelectionRange(input.value.length, input.value.length);
+        this.input.setSelectionRange(this.input.value.length, this.input.value.length);
       }, 0);
     }
   }
@@ -40,10 +43,9 @@ class TerminalPrompt extends Component {
     event.preventDefault();
     //
     const { executeCommand } = this.props;
-    const { input } = this.refs;
     const { target: form } = event;
     //
-    executeCommand(input.value);
+    executeCommand(this.input.value);
     form.reset();
   };
   onKeyDown = (event) => {
@@ -52,27 +54,27 @@ class TerminalPrompt extends Component {
     const KEY_RIGHT = 39;
     const KEY_DOWN = 40;
     //
-    const { prompt, caretLeft, caretRight, history, historyPrevious, historyNext } = this.props;
+    const { caretLeft, caretRight, history, historyPrevious, historyNext } = this.props;
+    const { value: promptValue, caret: promptCaret } = this.props.prompt;
     const { which } = event;
-    const { input } = this.refs;
-    if (which === KEY_LEFT && prompt.caret > 0) {
+    if (which === KEY_LEFT && promptCaret > 0) {
       caretLeft();
     } else if (which === KEY_UP) {
       if (history.index > 0) {
         historyPrevious();
       } else {
         setTimeout(() => {
-          input.setSelectionRange(prompt.caret, prompt.caret);
+          this.input.setSelectionRange(promptCaret, promptCaret);
         }, 0);
       }
-    } else if (which === KEY_RIGHT && prompt.caret < prompt.value.length) {
+    } else if (which === KEY_RIGHT && promptCaret < promptValue.length) {
       caretRight();
     } else if (which === KEY_DOWN) {
       if (history.index < history.commands.length - 1) {
         historyNext();
       } else {
         setTimeout(() => {
-          input.setSelectionRange(prompt.caret, prompt.caret);
+          this.input.setSelectionRange(promptCaret, promptCaret);
         }, 0);
       }
     }
@@ -92,7 +94,7 @@ class TerminalPrompt extends Component {
           autoCorrect="off"
           autoComplete="off"
           autoCapitalize="off"
-          ref="input"
+          ref={(element) => { this.input = element; }}
           value={prompt.value}
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}
